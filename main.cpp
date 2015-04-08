@@ -19,10 +19,11 @@ using namespace std;
  */
 int main(int argc, char** argv) {
     
-//    for(int i=1; i<argc; ++i){
-        Mat img = imread("input.jpg"); 
+    for(int i=1; i<argc; ++i) {
+        Mat img = imread(argv[i]); 
         findYellowHelmet(&img);
-        imwrite("/vagrant/ObstacleDetection/output.jpg", img);   
-//    }
+        imwrite("result.jpg", img);   
+    }
+    
     return 0;
 }
