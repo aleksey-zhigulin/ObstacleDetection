@@ -8,11 +8,10 @@
 #ifndef MISCELLANEOUS_H
 #define	MISCELLANEOUS_H
 
-#include <cv.h>
-#include <queue>
+
+#include "opencv2/core/core.hpp"
 
 using namespace cv;
-using namespace std;
 
 void findYellowHelmet(Mat* img);
 
