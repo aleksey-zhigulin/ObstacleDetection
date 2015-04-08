@@ -1,0 +1,7 @@
+/dist/
+/build/
+/nbproject/Package-Release.bash
+/nbproject/project.xml
+/nbproject/configurations.xml
+/nbproject/Package-Debug.bash
+/nbproject/private/
