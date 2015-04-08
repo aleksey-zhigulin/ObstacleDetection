@@ -10,7 +10,6 @@
 
 #include <cv.h>
 #include <queue>
-#include "objectdetectionstub.h"
 
 using namespace cv;
 using namespace std;
