@@ -14,14 +14,6 @@ CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/obstacledetection.so
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
 CND_PACKAGE_NAME_Debug=obstacledetection.tar
 CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/obstacledetection.tar
-# Release configuration
-CND_PLATFORM_Release=None-Windows
-CND_ARTIFACT_DIR_Release=build/Release/None-Windows/tests/TestFiles
-CND_ARTIFACT_NAME_Release=f1
-CND_ARTIFACT_PATH_Release=build/Release/None-Windows/tests/TestFiles/f1
-CND_PACKAGE_DIR_Release=dist/Release/None-Windows/package
-CND_PACKAGE_NAME_Release=obstacledetection.tar
-CND_PACKAGE_PATH_Release=dist/Release/None-Windows/package/obstacledetection.tar
 #
 # include compiler specific variables
 #

@@ -9,10 +9,15 @@
 #define	DETECTION_H
 
 #include "opencv2/core/core.hpp"
+#include "TLine.h"
 
 using namespace cv;
 
-int findColoredPerson(int *x,int *y,Mat* img);
-
+int findColoredObject(int *x,int *y,Mat* img);
+void LinesFromMat(Mat *image, vector<TLine*> *lines);
+int findRoadLines(Mat* img, int show);
+Point2i calcVanishPoint(TLine&, TLine&);
+double slope(TLine &);
+void extendLine(TLine& line, int from_x, int to_x);
 #endif	/* DETECTION_H */
 

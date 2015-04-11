@@ -10,10 +10,12 @@
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 
 #include <boost/program_options.hpp>
 
 #include "miscellaneous.h"
+#include "detection.h"
 
 using namespace cv;
 using namespace std;
@@ -28,6 +30,7 @@ int main(int argc, char** argv) {
     desc.add_options()
         ("help", "produce help message")
         ("find-yellow-helmet", value<string>(), "finds out a yellow helmet")        
+        ("find-road", value<string>(), "finds out a road")        
     ;
     positional_options_description p;
 //    p.add("input-file", -1);
@@ -43,6 +46,13 @@ int main(int argc, char** argv) {
     if (vm.count("find-yellow-helmet")) {        
         Mat img = imread(vm["find-yellow-helmet"].as<string>()); 
         findYellowHelmet(&img);
+        namedWindow("output");
+        imshow("output", img);
+        waitKey(0);
+    }
+    if (vm.count("find-road")) {        
+        Mat img = imread(vm["find-road"].as<string>());        
+        findRoadLines(&img, 1);
         namedWindow("output");
         imshow("output", img);
         waitKey(0);

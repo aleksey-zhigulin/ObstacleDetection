@@ -18,7 +18,7 @@ void findYellowHelmet(Mat* img) {
     Mat imgThreshed;
     inRange(imgHSV, Scalar(20, 100, 100), Scalar(30, 255, 255), imgThreshed);    
     Point_<int> center;
-    findColoredPerson(&center.x, &center.y, img);
+    findColoredObject(&center.x, &center.y, img);
     
     queue<Point_<int> > q;    
     vector<vector<int> > mark(img->cols, vector<int>(img->rows, 0));    

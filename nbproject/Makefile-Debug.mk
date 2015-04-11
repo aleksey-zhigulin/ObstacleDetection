@@ -35,7 +35,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/TLine.o \
 	${OBJECTDIR}/detection.o \
+	${OBJECTDIR}/lsd.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/miscellaneous.o
 
@@ -66,10 +68,20 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obstacledetection.${CND_DLIB_EXT}: ${
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obstacledetection.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/TLine.o: nbproject/Makefile-${CND_CONF}.mk TLine.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags opencv`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TLine.o TLine.cpp
+
 ${OBJECTDIR}/detection.o: nbproject/Makefile-${CND_CONF}.mk detection.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g `pkg-config --cflags opencv`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/detection.o detection.cpp
+
+${OBJECTDIR}/lsd.o: nbproject/Makefile-${CND_CONF}.mk lsd.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags opencv`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lsd.o lsd.cpp
 
 ${OBJECTDIR}/main.o: nbproject/Makefile-${CND_CONF}.mk main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
