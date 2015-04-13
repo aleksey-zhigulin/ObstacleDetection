@@ -21,6 +21,8 @@ public:
     void show(Mat*);
     double get_angle();
     double get_length();
+    double slope();
+    void extend(int from_x, int to_x);
     virtual ~TLine();    
     static bool angle_cmp(TLine*, TLine*);
 private:

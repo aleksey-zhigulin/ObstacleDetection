@@ -43,6 +43,19 @@ bool TLine::angle_cmp(TLine* a, TLine* b) {
     return a->get_angle() < b->get_angle();
 }
 
+void TLine::extend(int from_x, int to_x) {
+    double k = this->slope();
+    double b = this->pt1.y - k * this->pt1.x;
+    this->pt1.x = from_x;
+    this->pt2.x = to_x;
+    this->pt1.y = this->pt1.x * k + b;
+    this->pt2.y = this->pt2.x * k + b;
+}
+
+double TLine::slope() {    
+    return (double)(pt1.y - pt2.y)/(pt1.x - pt2.x);
+}
+
 TLine::~TLine() {
 }
 

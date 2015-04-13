@@ -14,9 +14,6 @@
 using namespace cv;
 using namespace std;
 
-//bool cmp(TLine* a, TLine* b) {
-//    return a->get_angle() < b->get_angle();
-//}
 
 int findColoredObject(int *x,int *y,Mat* img) {
 //   Brute force
@@ -66,8 +63,8 @@ int findRoadLines(Mat* img, int show){
     Point vanish = calcVanishPoint(left, right);
     
     //Extends the lines just for illustration    
-    extendLine(left, 0, vanish.x);
-    extendLine(right, vanish.x, img->cols);   
+    left.extend(0, vanish.x);
+    right.extend(vanish.x, img->cols);   
      
     if (show) {
         left.show(img);
@@ -131,15 +128,3 @@ Point2i calcVanishPoint(TLine &left, TLine &right) {
     );    
 }
 
-double slope(TLine &line) {    
-    return (double)(line.pt1.y - line.pt2.y)/(line.pt1.x - line.pt2.x);
-}
-
-void extendLine(TLine& line, int from_x, int to_x) {
-    double k = slope(line);
-    double b = line.pt1.y - k * line.pt1.x;
-    line.pt1.x = from_x;
-    line.pt2.x = to_x;
-    line.pt1.y = line.pt1.x * k + b;
-    line.pt2.y = line.pt2.x * k + b;
-}
