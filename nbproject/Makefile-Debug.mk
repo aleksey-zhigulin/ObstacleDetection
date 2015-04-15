@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Road.o \
 	${OBJECTDIR}/TLine.o \
 	${OBJECTDIR}/detection.o \
 	${OBJECTDIR}/lsd.o \
@@ -56,7 +57,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=`pkg-config --libs opencv` /usr/lib/libboost_program_options.a  
+LDLIBSOPTIONS=/usr/lib/libboost_program_options.a `pkg-config --libs opencv`  
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -67,6 +68,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obstacledetection.${CND_DLIB_EXT}: /u
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obstacledetection.${CND_DLIB_EXT}: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obstacledetection.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/Road.o: nbproject/Makefile-${CND_CONF}.mk Road.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags opencv`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Road.o Road.cpp
 
 ${OBJECTDIR}/TLine.o: nbproject/Makefile-${CND_CONF}.mk TLine.cpp 
 	${MKDIR} -p ${OBJECTDIR}

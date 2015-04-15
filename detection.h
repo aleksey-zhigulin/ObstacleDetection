@@ -13,9 +13,8 @@
 
 using namespace cv;
 
-int findColoredObject(int *x,int *y,Mat* img);
 void LinesFromMat(Mat *image, vector<TLine*> *lines);
-int findRoadLines(Mat* img, int show);
-Point2i calcVanishPoint(TLine&, TLine&);
+int findColoredObject(int *x,int *y,Mat* img);
+
 #endif	/* DETECTION_H */
 

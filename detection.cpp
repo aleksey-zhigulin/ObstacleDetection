@@ -37,43 +37,6 @@ int findColoredObject(int *x,int *y,Mat* img) {
     return 0;
 }
 
-int findRoadLines(Mat* img, int show){    
-    
-    Mat grey;
-    cvtColor(*img, grey, CV_BGR2GRAY);
-
-    vector<TLine*> lines; 
-    LinesFromMat(&grey,&lines);
-  
-    
-    vector<TLine*> goodlines;    
-    for(int longLen = 40, i=0; i < lines.size(); i++) {                
-        if (lines[i]->get_length() > longLen &&
-            abs(lines[i]->get_angle()) > 10 && abs(lines[i]->get_angle()) < 80) {
-            goodlines.push_back(lines[i]);                            
-        }
-    }
-    
-    //Choosing concrete 2 lines
-
-    std::sort(goodlines.begin(), goodlines.end(), TLine::angle_cmp);       
-    TLine left=*goodlines.front(), right=*goodlines.back();
-    
-    //Calc Vanish Point
-    Point vanish = calcVanishPoint(left, right);
-    
-    //Extends the lines just for illustration    
-    left.extend(0, vanish.x);
-    right.extend(vanish.x, img->cols);   
-     
-    if (show) {
-        left.show(img);
-        right.show(img);
-        circle(*img, vanish, 5, CV_RGB(0,255,0));
-    }
-    
-    return 0;
-}
 
 void LinesFromMat(Mat *image, vector<TLine*> *lines) { //image must be in grayscale!
 	
@@ -107,24 +70,5 @@ void LinesFromMat(Mat *image, vector<TLine*> *lines) { //image must be in graysc
 	
 }
 
-Point2i calcVanishPoint(TLine &left, TLine &right) {
-    int x1=left.pt1.x;
-    int y1=left.pt1.y;
 
-    int x2=left.pt2.x;
-    int y2=left.pt2.y;
-
-    int x3=right.pt1.x;
-    int y3=right.pt1.y;
-
-    int x4=right.pt2.x;
-    int y4=right.pt2.y;
-    
-    int denom = ((x1-x2)*(y3-y4)-(y1-y2)*(x3-x4));    
-        
-    return Point2i(
-        ((x1*y2-y1*x2)*(x3-x4)-(x1-x2)*(x3*y4-y3*x4))/denom,
-        ((x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4))/denom
-    );    
-}
 

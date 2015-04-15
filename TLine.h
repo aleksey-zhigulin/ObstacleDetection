@@ -15,17 +15,20 @@ using namespace cv;
 class TLine {
 public:
     Point2i pt1, pt2;
+    double k, b;
     TLine();        
     TLine(int, int, int, int);
     TLine(Point2i, Point2i);    
     void show(Mat*);
-    double get_angle();
-    double get_length();
-    double slope();
+    double getAngle();
+    double getLength();
     void extend(int from_x, int to_x);
+    int y(int);
+    int x(int);
     virtual ~TLine();    
-    static bool angle_cmp(TLine*, TLine*);
+    static bool angleCmp(TLine*, TLine*);
 private:
+    double slope();
 };
 
 #endif	/* TLINE_H */

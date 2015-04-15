@@ -16,6 +16,7 @@
 
 #include "miscellaneous.h"
 #include "detection.h"
+#include "Road.h"
 
 using namespace cv;
 using namespace std;
@@ -50,12 +51,10 @@ int main(int argc, char** argv) {
         imshow("output", img);
         waitKey(0);
     }
-    if (vm.count("find-road")) {        
-        Mat img = imread(vm["find-road"].as<string>());        
-        findRoadLines(&img, 1);
-        namedWindow("output");
-        imshow("output", img);
-        waitKey(0);
+    if (vm.count("find-road")) {                
+        Mat img = imread(vm["find-road"].as<string>());
+        Road road(&img);
+        road.show();        
     }
     
     return 0;
