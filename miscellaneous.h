@@ -13,6 +13,10 @@
 using namespace cv;
 
 void findYellowHelmet(Mat* img);
+void makeStereoCube(int, char**);
+void drawCubeRight();
+void drawCubeLeft();
+void processKeyboard(unsigned char key, int x, int y);
 
 #endif	/* MISCELLANEOUS_H */
 

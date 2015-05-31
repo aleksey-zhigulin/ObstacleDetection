@@ -57,7 +57,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=/usr/lib/libboost_program_options.a `pkg-config --libs opencv`  
+LDLIBSOPTIONS=/usr/lib/libboost_program_options.a `pkg-config --libs opencv` `pkg-config --libs gl`  
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -67,37 +67,37 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obstacledetection.${CND_DLIB_EXT}: /u
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obstacledetection.${CND_DLIB_EXT}: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obstacledetection.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obstacledetection.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -lGL -lglut
 
 ${OBJECTDIR}/Road.o: nbproject/Makefile-${CND_CONF}.mk Road.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g `pkg-config --cflags opencv`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Road.o Road.cpp
+	$(COMPILE.cc) -g `pkg-config --cflags opencv` `pkg-config --cflags gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Road.o Road.cpp
 
 ${OBJECTDIR}/TLine.o: nbproject/Makefile-${CND_CONF}.mk TLine.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g `pkg-config --cflags opencv`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TLine.o TLine.cpp
+	$(COMPILE.cc) -g `pkg-config --cflags opencv` `pkg-config --cflags gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TLine.o TLine.cpp
 
 ${OBJECTDIR}/detection.o: nbproject/Makefile-${CND_CONF}.mk detection.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g `pkg-config --cflags opencv`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/detection.o detection.cpp
+	$(COMPILE.cc) -g `pkg-config --cflags opencv` `pkg-config --cflags gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/detection.o detection.cpp
 
 ${OBJECTDIR}/lsd.o: nbproject/Makefile-${CND_CONF}.mk lsd.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g `pkg-config --cflags opencv`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lsd.o lsd.cpp
+	$(COMPILE.cc) -g `pkg-config --cflags opencv` `pkg-config --cflags gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lsd.o lsd.cpp
 
 ${OBJECTDIR}/main.o: nbproject/Makefile-${CND_CONF}.mk main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g `pkg-config --cflags opencv`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g `pkg-config --cflags opencv` `pkg-config --cflags gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/miscellaneous.o: nbproject/Makefile-${CND_CONF}.mk miscellaneous.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g `pkg-config --cflags opencv`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/miscellaneous.o miscellaneous.cpp
+	$(COMPILE.cc) -g `pkg-config --cflags opencv` `pkg-config --cflags gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/miscellaneous.o miscellaneous.cpp
 
 # Subprojects
 .build-subprojects:

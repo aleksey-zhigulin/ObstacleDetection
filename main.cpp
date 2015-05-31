@@ -32,6 +32,7 @@ int main(int argc, char** argv) {
         ("help", "produce help message")
         ("find-yellow-helmet", value<string>(), "finds out a yellow helmet")        
         ("find-road", value<string>(), "finds out a road")        
+        ("make-stereo-cube", "make stereo image of cube")  
     ;
     positional_options_description p;
 //    p.add("input-file", -1);
@@ -55,6 +56,9 @@ int main(int argc, char** argv) {
         Mat img = imread(vm["find-road"].as<string>());
         Road road(&img);
         road.show();        
+    }
+    if (vm.count("make-stereo-cube")) {                
+        makeStereoCube(argc, argv);
     }
     
     return 0;

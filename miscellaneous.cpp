@@ -8,6 +8,10 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/core/core.hpp"
 
+#include <cstdio>
+#include <cstdarg>
+#include <GL/glut.h>
+
 using namespace std;
 
 
@@ -46,4 +50,149 @@ void findYellowHelmet(Mat* img) {
     }    
         
     circle(*img, center, radius, cvScalar(80, 255, 20));
+}
+
+void makeStereoCube(int argc, char** argv) {
+        
+    glutInit(&argc, argv);
+    glutInitWindowSize(600, 600);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+    
+    glutCreateWindow("Cube from left camera");
+    glEnable(GL_DEPTH_TEST);
+    glutDisplayFunc(drawCubeLeft);    
+        
+    glutCreateWindow("Cube from right camera");    
+    glutPositionWindow(600,0);
+    glEnable(GL_DEPTH_TEST);
+    glutDisplayFunc(drawCubeRight);    
+    
+    glutMainLoop(); 
+}
+
+void drawCubeRight(){
+ 
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
+    glRotatef(-5, 1.0, -1.0, 0.0 );    // Not included
+    //glRotatef(5, 0.0, 1.0, 0.0 );    
+    glBegin(GL_POLYGON);
+
+    glColor3f( 1.0, 0.0, 0.0 );     glVertex3f(  0.5, -0.5, -0.5 );      // P1 is red
+    glColor3f( 0.0, 1.0, 0.0 );     glVertex3f(  0.5,  0.5, -0.5 );      // P2 is green
+    glColor3f( 0.0, 0.0, 1.0 );     glVertex3f( -0.5,  0.5, -0.5 );      // P3 is blue
+    glColor3f( 1.0, 0.0, 1.0 );     glVertex3f( -0.5, -0.5, -0.5 );      // P4 is purple
+
+    glEnd();
+
+    // White side - BACK
+    glBegin(GL_POLYGON);
+    glColor3f(   1.0,  1.0, 1.0 );
+    glVertex3f(  0.5, -0.5, 0.5 );
+    glVertex3f(  0.5,  0.5, 0.5 );
+    glVertex3f( -0.5,  0.5, 0.5 );
+    glVertex3f( -0.5, -0.5, 0.5 );
+    glEnd();
+
+    // Purple side - RIGHT
+    glBegin(GL_POLYGON);
+    glColor3f(  1.0,  0.0,  1.0 );
+    glVertex3f( 0.5, -0.5, -0.5 );
+    glVertex3f( 0.5,  0.5, -0.5 );
+    glVertex3f( 0.5,  0.5,  0.5 );
+    glVertex3f( 0.5, -0.5,  0.5 );
+    glEnd();
+
+    // Green side - LEFT
+    glBegin(GL_POLYGON);
+    glColor3f(   0.0,  1.0,  0.0 );
+    glVertex3f( -0.5, -0.5,  0.5 );
+    glVertex3f( -0.5,  0.5,  0.5 );
+    glVertex3f( -0.5,  0.5, -0.5 );
+    glVertex3f( -0.5, -0.5, -0.5 );
+    glEnd();
+
+    // Blue side - TOP
+    glBegin(GL_POLYGON);
+    glColor3f(   0.0,  0.0,  1.0 );
+    glVertex3f(  0.5,  0.5,  0.5 );
+    glVertex3f(  0.5,  0.5, -0.5 );
+    glVertex3f( -0.5,  0.5, -0.5 );
+    glVertex3f( -0.5,  0.5,  0.5 );
+    glEnd();
+
+    // Red side - BOTTOM
+    glBegin(GL_POLYGON);
+    glColor3f(   1.0,  0.0,  0.0 );
+    glVertex3f(  0.5, -0.5, -0.5 );
+    glVertex3f(  0.5, -0.5,  0.5 );
+    glVertex3f( -0.5, -0.5,  0.5 );
+    glVertex3f( -0.5, -0.5, -0.5 );
+    glEnd();
+    
+    glFlush();    
+    glutSwapBuffers(); 
+}
+
+void drawCubeLeft(){
+ 
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();   
+    glRotatef(-5, 1.0, 1.0, 0.0 );    // Not included
+    glBegin(GL_POLYGON);
+
+    glColor3f( 1.0, 0.0, 0.0 );     glVertex3f(  0.5, -0.5, -0.5 );      // P1 is red
+    glColor3f( 0.0, 1.0, 0.0 );     glVertex3f(  0.5,  0.5, -0.5 );      // P2 is green
+    glColor3f( 0.0, 0.0, 1.0 );     glVertex3f( -0.5,  0.5, -0.5 );      // P3 is blue
+    glColor3f( 1.0, 0.0, 1.0 );     glVertex3f( -0.5, -0.5, -0.5 );      // P4 is purple
+
+    glEnd();
+
+    // White side - BACK
+    glBegin(GL_POLYGON);
+    glColor3f(   1.0,  1.0, 1.0 );
+    glVertex3f(  0.5, -0.5, 0.5 );
+    glVertex3f(  0.5,  0.5, 0.5 );
+    glVertex3f( -0.5,  0.5, 0.5 );
+    glVertex3f( -0.5, -0.5, 0.5 );
+    glEnd();
+
+    // Purple side - RIGHT
+    glBegin(GL_POLYGON);
+    glColor3f(  1.0,  0.0,  1.0 );
+    glVertex3f( 0.5, -0.5, -0.5 );
+    glVertex3f( 0.5,  0.5, -0.5 );
+    glVertex3f( 0.5,  0.5,  0.5 );
+    glVertex3f( 0.5, -0.5,  0.5 );
+    glEnd();
+
+    // Green side - LEFT
+    glBegin(GL_POLYGON);
+    glColor3f(   0.0,  1.0,  0.0 );
+    glVertex3f( -0.5, -0.5,  0.5 );
+    glVertex3f( -0.5,  0.5,  0.5 );
+    glVertex3f( -0.5,  0.5, -0.5 );
+    glVertex3f( -0.5, -0.5, -0.5 );
+    glEnd();
+
+    // Blue side - TOP
+    glBegin(GL_POLYGON);
+    glColor3f(   0.0,  0.0,  1.0 );
+    glVertex3f(  0.5,  0.5,  0.5 );
+    glVertex3f(  0.5,  0.5, -0.5 );
+    glVertex3f( -0.5,  0.5, -0.5 );
+    glVertex3f( -0.5,  0.5,  0.5 );
+    glEnd();
+
+    // Red side - BOTTOM
+    glBegin(GL_POLYGON);
+    glColor3f(   1.0,  0.0,  0.0 );
+    glVertex3f(  0.5, -0.5, -0.5 );
+    glVertex3f(  0.5, -0.5,  0.5 );
+    glVertex3f( -0.5, -0.5,  0.5 );
+    glVertex3f( -0.5, -0.5, -0.5 );
+    glEnd();
+
+    glFlush();
+    glutSwapBuffers(); 
 }
